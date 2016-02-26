@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=320, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<base href="./">
+		<link href="style.css" rel="stylesheet">
+		<title>html basic concept</title>
+		
+		<style>
+		.main div {
+			width: 710px;
+			margin: 0 0 0 15px;
+			padding: 20px 0 20px 0;
+			border: 0;
+			border-top: 1px solid #aaa;
+			border-bottom: 1px solid #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header"><h1>HTML 基本概念</h1></div>
+			<div class="main">
+				<div>
+					<h2>HTML 块元素 block-line</h2>
+					<p>大多数 HTML 元素被定义为块级元素或内联元素。</p>
+					<p>编者注：“块级元素”译为 block level element，“内联元素”译为 inline element。</p>
+					<p>块级元素在浏览器显示时，通常会以新行来开始（和结束）。</p>
+					<p>例子：&lt;div&gt;, &lt;h1&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;table&gt;</p>
+				</div>
+				<div>
+					<h2>HTML 内联元素 in-line</h2>
+					<p>内联元素在显示时通常不会以新行开始。</p>
+					<p>例子：&lt;b&gt;, &lt;td&gt;, &lt;a&gt;, &lt;img&gt;,&lt;span&gt;</p>
+				</div>
+				<div>
+					<h2>HTML &lt;div&gt; 元素</h2>
+					<p>HTML &lt;div&gt; 元素是块级元素，它是可用于组合其他 HTML 元素的容器。</p>
+					<p>&lt;div&gt; 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。</p>
+					<p>如果与 CSS 一同使用，&lt;div&gt; 元素可用于对大的内容块设置样式属性。</p>
+					
+				</div>
+				<div><h2>DTD中规定了块级元素是不能放在&lt;p&gt;里面的</h2></div>
+				
+			</div>
+			<div class="footer"></div>
+		</div>
+	</body>
+</html>
