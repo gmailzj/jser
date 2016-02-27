@@ -1,4 +1,4 @@
-require(["popupModel"],function(popupModel){
+require(["countDown"],function(CountDown){
 
 	
 	//文档加载完

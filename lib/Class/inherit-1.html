@@ -1,0 +1,176 @@
+<script>
+/*
+function Person(name, sex) {
+    this.name = name;
+    this.sex = sex;
+}
+Person.prototype.age = 20;
+Person.prototype.showAge = function(){console.log(this.age)};
+
+var zhang1 = new Person("ZhangSan1", "man");
+var zhang2 = new Person("ZhangSan2", "man");
+console.log(zhang.age); // 20
+// 覆盖prototype中的age属性
+zhang.age = 19;
+console.log(zhang.age); // 19
+delete zhang.age;
+// 在删除实例属性age后，此属性值又从prototype中获取
+console.log(zhang.age); // 20
+*/
+
+
+
+
+
+
+
+
+//原型式继承
+/* Person Prototype Object. */
+var Person = {
+	name: 'default name',
+	getName: function() {
+		return this.name;
+	}
+};
+
+var reader = clone(Person);
+alert(reader.getName()); // This will output 'default name'.
+reader.name = 'John Smith';
+alert(reader.getName()); // This will now output 'John Smith'.
+
+/* Author Prototype Object. */
+var Author = clone(Person);
+Author.books = []; // Default value.
+Author.getBooks = function() {
+	return this.books;
+}
+
+var authorClone = clone(Author);
+alert(authorClone.name); // Linked to the primative Person.name, which is the
+// string 'default name'.
+authorClone.name = 'new name'; // A new primative is created and added to the
+// authorClone object itself.
+alert(authorClone.name); // Now linked to the primative authorClone.name, which
+// is the string 'new name'.
+authorClone.books.push('new book'); // authorClone.books is linked to the array
+// Author.books. We just modified the
+// prototype object's default value, and all
+// other objects that link to it will now
+// have a new default value there.
+authorClone.books = []; // A new array is created and added to the authorClone
+// object itself.
+authorClone.books.push('new book'); // We are now modifying that new array.
+
+/* Clone function. */
+function clone(object) {
+	function F() {}
+	F.prototype = object;
+	return new F;
+}
+
+
+
+
+
+
+
+
+
+
+//类继承
+
+//方式1 The Prototype Chain 原型链
+
+/* Class Person. */
+function Person(name) {
+	this.name = name;
+}
+Person.prototype.getName = function() {
+	return this.name;
+}
+
+
+/* Class Author. */
+function Author(name, books) {
+	Person.call(this, name); // Call the superclass's constructor in the scope of this.
+	this.books = books; // Add an attribute to Author.
+}
+Author.prototype = new Person(); // Set up the prototype chain.
+Author.prototype.constructor = Author; // Set the constructor attribute to Author.
+Author.prototype.getBooks = function() { // Add a method to Author.
+	return this.books;
+};
+
+//方式2 The extend Function
+
+/* Extend function. */
+function extend(subClass, superClass) {
+	var F = function() {};
+	F.prototype = superClass.prototype;
+	subClass.prototype = new F();
+	subClass.prototype.constructor = subClass;
+}
+
+/* Class Person. */
+function Person(name) {
+	this.name = name;
+}
+Person.prototype.getName = function() {
+	return this.name;
+}
+
+/* Class Author. */
+function Author(name, books) {
+	Person.call(this, name);//Person被硬编码了。
+	this.books = books;
+}
+extend(Author, Person);
+Author.prototype.getBooks = function() {
+	return this.books;
+};
+
+//方式3 The extend Function 改进版
+
+/* Extend function, improved. */
+function extend(subClass, superClass) {
+	var F = function() {};
+	F.prototype = superClass.prototype;
+	subClass.prototype = new F();
+	subClass.prototype.constructor = subClass;
+	subClass.superclass = superClass.prototype;
+	if(superClass.prototype.constructor == Object.prototype.constructor) {
+		superClass.prototype.constructor = superClass;
+	}
+}
+
+/* Class Person. */
+function Person(name) {
+	this.name = name;
+}
+Person.prototype.getName = function() {
+	return this.name;
+}
+
+
+/* Class Author. */
+function Author(name, books) {
+	Author.superclass.constructor.call(this, name);
+	this.books = books;
+}
+
+extend(Author, Person);
+
+Author.prototype.getBooks = function() {
+	return this.books;
+};
+
+Author.prototype.getName = function() {
+	//调用基类的方法
+	var name = Author.superclass.getName.call(this);
+	return name + ', Author of ' + this.getBooks().join(', ');
+};
+
+
+
+</script>

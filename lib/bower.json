@@ -1,0 +1,29 @@
+{
+  "name": "jser",
+  "homepage": "https://github.com/gmailzj/jser",
+  "authors": [
+    "gmailzj <gmailzj@qq.com>"
+  ],
+  "description": "jser",
+  "main": "jser",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "jser"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "zepto": "^1.1.6",
+    "bootstrap": "^3.3.6",
+    "jquery": "1.11.1"
+  }
+}
