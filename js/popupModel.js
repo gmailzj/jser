@@ -44,7 +44,7 @@ define(function(){
 			}
 
 			if(canAutoClose!==undefined){
-				obj.canAutoClose = intval(canAutoClose);
+				obj.canAutoClose = parseInt(canAutoClose);
 			}
 			
 			this.confirm(obj);
