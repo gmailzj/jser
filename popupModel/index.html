@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=320, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<base href="./">
+		<link href="style.css" rel="stylesheet">
+		<title>You are welcome!</title>
+		<script src="../lib/zepto.min.js"></script>
+	</head>
+	<body>
+		
+		<button class="button button-positive" id="btn-1">通知</button>
+		<br/>
+		<br/>
+		<button class="button button-positive" id="btn-4">通知2</button>
+		<br/>
+		<br/>
+		<button class="button button-calm" id="btn-2">提示回调</button>
+		<br/>
+		<br/>
+		<button class="button button-assertive" id="btn-3">弹窗遮罩无法关闭</button>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=320, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <base href="./">
-    <link href="style.css" rel="stylesheet">
-    <title>You are welcome!</title>
-    <script src="../lib/zepto.min.js"></script>
-    
-</head>
-
-<body>
-    <script data-main="popupModel-main.js" src="../lib/require.min.js"></script>
-</body>
-<p class="task-steps ng-binding" ng-bind-html="task.steps"><div class="step">1、点击“复制关键字”按钮，复制并跳转；</div><div class="step">2、在AppStore中，粘贴搜索；</div><div class="step">3、找到“WiFi万能钥匙 (官方版) ”安装下载；</div><div class="step"><b class="assertive">4、打开应用，前台运行，真实体验3分钟！</b></div></p>
+		<script data-main="popupModel-main.js" src="../lib/require.min.js"></script>
+	</body>
 </html>
