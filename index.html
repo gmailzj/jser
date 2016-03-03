@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=320, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<base href="./">
+		<script src="http://127.0.0.1:8080/target/target-script-min.js#anonymous"></script>
+        <title>demo</title>
+		
+		<style>
+		
+		.main div {
+			width: 710px;
+			margin: 0 0 0 15px;
+			padding: 20px 0 20px 0;
+			border: 0;
+			border-top: 1px solid #aaa;
+			border-bottom: 1px solid #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header"><h1></h1></div>
+			<div class="main">
+			<h1 class="post-title" itemprop="headline" style="letter-spacing: -0.04em; line-height: 1.45em; color: rgb(74, 74, 74); font-weight: 300; margin: 0px; font-size: 2.4rem; word-break: initial; overflow: hidden;">
+    Web移动应用远程调试工具 Weinre
+</h1>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    在移动互联网时代，WEB应用越来越普及和被人所接受。而且线上需求不断的改变，通过迭代更新线上的手机App肯定是计划赶不上变化，所以现在越来越多的App也通过采用Webview的方式嵌入一些比较常更新的页面，以便实时更新。
+</p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    Web应用开发者需要针对手机进行界面的重新设计，但是手机上并没有称心如意的调试工具（如Firebug、web inspector），重新设计界面的工作往往事半功倍，所以一个好优秀的远程调试工具 Weinre 就很好的解决了这一问题。
+</p>
+<h3 id="Weinre是什么" style="letter-spacing: -0.04em; line-height: 1.45em; color: rgb(74, 74, 74); font-weight: 300; margin: 1.4em 0px 0.7em; font-size: 2rem;">
+    Weinre是什么
+</h3>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    Weinre 是一款远程调试工具，在电脑上可以即时的修改手机上对应网页的页面元素、样式表，或是查看Javascript变量，同时还可以看到手机上页面的错误和警告信息.(等同于Chrome Inspect Element )<br/><a id="more" style="cursor: pointer; color: rgb(65, 131, 196);"></a>
+</p>
+<h3 id="运行原理" style="letter-spacing: -0.04em; line-height: 1.45em; color: rgb(74, 74, 74); font-weight: 300; margin: 1.4em 0px 0.7em; font-size: 2rem;">
+    运行原理
+</h3>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    Weinre作为一种远程调试工具，在结构上分为三层：
+</p>
+<ul style="margin-bottom: 1em;" class=" list-paddingleft-2">
+    <li>
+        <p>
+            目标页面（target）：被调试的页面，页面已嵌入weinre的远程js，下文会介绍；
+        </p>
+    </li>
+    <li>
+        <p>
+            Debug客户端（client）：本地的Web Inspector调试客户端；
+        </p>
+    </li>
+    <li>
+        <p>
+            Debug服务端（agent）：一个HTTP Server，为目标页面与Debug客户端建立通信。
+        </p>
+    </li>
+</ul>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    <img src="https://dn-dearb.qbox.me/http-flow.png" alt="myimages" style="display: block; width: auto; max-width: 100%; border-radius: 3px;"/>
+</p>
+<h3 id="获取Weinre" style="letter-spacing: -0.04em; line-height: 1.45em; color: rgb(74, 74, 74); font-weight: 300; margin: 1.4em 0px 0.7em; font-size: 2rem;">
+    获取Weinre
+</h3>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    在任何的支持 Node.js 环境的系统下通过包管理器（npm）即可安装Weinre
+</p>
+<p></p>
+<p>
+    <figure class="highlight cmake" style="margin: 10px 0px; border-radius: 3px; line-height: 1.2em; color: rgb(51, 51, 51); font-family: Menlo; border: 1px solid rgb(217, 217, 217); overflow: hidden; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+        <table width="878" style="width: 828px;">
+            <tbody>
+                <tr class="firstRow">
+                    <td class="gutter" style="border-top-style: none; border-bottom-style: none; border-left-style: none; padding: 0.3em 0.5em; border-right-color: rgb(217, 217, 217); margin: 0px; cursor: text; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">1</pre>
+                    </td>
+                    <td class="code" style="border: none; padding: 0.3em 0.3em 0.3em 1em; margin: 0px; cursor: text;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">npm install -g weinre</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</p>
+<p></p>
+<h3 id="使用Weinre进行远程调试" style="letter-spacing: -0.04em; line-height: 1.45em; color: rgb(74, 74, 74); font-weight: 300; margin: 1.4em 0px 0.7em; font-size: 2rem;">
+    使用Weinre进行远程调试
+</h3>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    1 启动 WeinreDe bug 服务端
+</p>
+<p></p>
+<p>
+    <figure class="highlight brainfuck" style="margin: 10px 0px; border-radius: 3px; line-height: 1.2em; color: rgb(51, 51, 51); font-family: Menlo; border: 1px solid rgb(217, 217, 217); overflow: hidden; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+        <table width="878" style="width: 828px;">
+            <tbody>
+                <tr class="firstRow">
+                    <td class="gutter" style="border-top-style: none; border-bottom-style: none; border-left-style: none; padding: 0.3em 0.5em; border-right-color: rgb(217, 217, 217); margin: 0px; cursor: text; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">1</pre>
+                    </td>
+                    <td class="code" style="border: none; padding: 0.3em 0.3em 0.3em 1em; margin: 0px; cursor: text;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">weinre --httpPort 8080 --boundHost -all-</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</p>
+<p></p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    2 通过PC浏览器（WebKit内核）打开 WeinreDe bug 客户端
+</p>
+<p></p>
+<p>
+    <figure class="highlight asciidoc" style="margin: 10px 0px; border-radius: 3px; line-height: 1.2em; color: rgb(51, 51, 51); font-family: Menlo; border: 1px solid rgb(217, 217, 217); overflow: hidden; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+        <table width="878" style="width: 828px;">
+            <tbody>
+                <tr class="firstRow">
+                    <td class="gutter" style="border-top-style: none; border-bottom-style: none; border-left-style: none; padding: 0.3em 0.5em; border-right-color: rgb(217, 217, 217); margin: 0px; cursor: text; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">1</pre>
+                    </td>
+                    <td class="code" style="border: none; padding: 0.3em 0.3em 0.3em 1em; margin: 0px; cursor: text;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">Open in your pc browser http://localhost[Your IP]:8080</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</p>
+<p></p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    <img src="https://dn-dearb.qbox.me/20131121114239.png" alt="loalhost server" style="display: block; width: auto; max-width: 100%; border-radius: 3px;"/>
+</p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    3 在你需要调试的页面加上通信用的脚本
+</p>
+<p></p>
+<p>
+    <figure class="highlight javascript" style="margin: 10px 0px; border-radius: 3px; line-height: 1.2em; color: rgb(51, 51, 51); font-family: Menlo; border: 1px solid rgb(217, 217, 217); overflow: hidden; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+        <table width="878" style="width: 828px;">
+            <tbody>
+                <tr class="firstRow">
+                    <td class="gutter" style="border-top-style: none; border-bottom-style: none; border-left-style: none; padding: 0.3em 0.5em; border-right-color: rgb(217, 217, 217); margin: 0px; cursor: text; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">1</pre>
+                    </td>
+                    <td class="code" style="border: none; padding: 0.3em 0.3em 0.3em 1em; margin: 0px; cursor: text;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">&lt;script src=&quot;http://localhost[Your IP]:8080/target/target-script-min.js#anonymous&quot;&gt;&lt;/script&gt;</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</p>
+<p></p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    4 在手机上访问你的测试页面，在电脑上进入到 WeinreDe bug 客户端 看是否通信成功，如果一切没问题，可见到如下的页面
+</p>
+<p></p>
+<p>
+    <figure class="highlight asciidoc" style="margin: 10px 0px; border-radius: 3px; line-height: 1.2em; color: rgb(51, 51, 51); font-family: Menlo; border: 1px solid rgb(217, 217, 217); overflow: hidden; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+        <table width="878" style="width: 828px;">
+            <tbody>
+                <tr class="firstRow">
+                    <td class="gutter" style="border-top-style: none; border-bottom-style: none; border-left-style: none; padding: 0.3em 0.5em; border-right-color: rgb(217, 217, 217); margin: 0px; cursor: text; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">1</pre>
+                    </td>
+                    <td class="code" style="border: none; padding: 0.3em 0.3em 0.3em 1em; margin: 0px; cursor: text;">
+                        <pre style="border: none; padding: 0px; margin-top: 0px; margin-bottom: 0px; cursor: text;">Open in your pc browser http://localhost[Your IP]:8080/client/#anonymous</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</p>
+<p></p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    <img src="https://dn-dearb.qbox.me/20131121115208.png" alt="ddd" style="display: block; width: auto; max-width: 100%; border-radius: 3px;"/>
+</p>
+<p style="margin-top: 0px; margin-bottom: 1em;">
+    5 最后跟你平时一样实时调试你的页面吧，是不是很爽。
+</p>
+<p>
+    <br/>
+</p>
+			</div>
+			<div class="footer"></div>
+		</div>
+	</body>
+</html>

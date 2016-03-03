@@ -7,11 +7,14 @@ define(function(){
 			var st = $("body").scrollTop();
 			var sl = $("body").scrollLeft();
 			var rect = $('.'+obj.container).get(0).getBoundingClientRect();
+			console.log(rect);
 
 			var top = st + (document.documentElement.clientHeight-rect.height)/2;
 			var left = sl + (document.documentElement.clientWidth-rect.width)/2;
 
 			console.log(top, left);
+
+			return {left:left,top:top};
 		}
 
 		//
@@ -53,7 +56,12 @@ define(function(){
 		Dialog.prototype.confirm = function(){
 
 			//是否存在背景
-			$("."+this.floatbg).length  || $("body").append('<div class="'+this.floatbg+'"></div>');
+			if($("."+this.floatbg).length){
+				//兼容以前的共用浮层的
+				$("."+this.floatbg).removeClass('hide');
+			} else {
+				$("body").append('<div class="'+this.floatbg+'"></div>');
+			}
 			var _this = this;
 			var icon = "images/alert.png";
 			var defaultOptions = {
@@ -129,11 +137,14 @@ define(function(){
 				$("body").append(html);
 
 				//计算浮层坐标
-				//var position = getPosition(this);
+				
+				
 				this.$floatbg = $("."+this.floatbg);
 				this.$container = $("."+this.container);
-				
 				this.$container.show();
+				var position = getPosition(this);
+				this.$container.css("left",position.left);
+				//this.$container.css("top",position.top);
 
 				var _this = this;
 				if(options.canCloseByMask){
