@@ -173,7 +173,7 @@ define(function(){
 
 				//自动关闭
 	            if(options.canAutoClose){
-	            	setTimeout(function(){},1500);
+	            	setTimeout(function(){_hide(_this);},options.canAutoClose);
 	            }
 	            return false;
 	        }
