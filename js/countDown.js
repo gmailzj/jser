@@ -24,7 +24,7 @@ define(['Class','jquery', 'template'],function(Class, $, TPL) {
 				var timeStampBegin = (new Date()).getTime();
 
 				var timestampEnd = options.timestampEnd;
-				console.log(timeStampBegin, timestampEnd);
+				//console.log(timeStampBegin, timestampEnd);
 				var leftTime = Math.floor((timestampEnd - timeStampBegin)/1000);
 				if(leftTime<0){
 					leftTime = 0;
@@ -41,7 +41,7 @@ define(['Class','jquery', 'template'],function(Class, $, TPL) {
 				leftTime -= m*minutes;
 
 				s = leftTime;
-				console.log(d,h,m,s);
+				//console.log(d,h,m,s);
 
 				var dString = d,hString=h,mString=m,sString=s;
 				if(d<10){

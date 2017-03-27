@@ -5,10 +5,7 @@
 		<meta name="viewport" content="width=320, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<base href="./">
-		<link href="style.css" rel="stylesheet">
 		<title>demo</title>
-		
 		<style>
 		
 		.main div {
@@ -16,8 +13,6 @@
 			margin: 0 0 0 15px;
 			padding: 20px 0 20px 0;
 			border: 0;
-			border-top: 1px solid #aaa;
-			border-bottom: 1px solid #aaa;
 			}
 		</style>
 	</head>
@@ -25,10 +20,11 @@
 		<div class="wrapper">
 			<div class="header"><h1></h1></div>
 			<div class="main">
-			
+			<div id="countDown"></div>
 			</div>
 			<div class="footer"></div>
 		</div>
-    <script data-main="./main.js" src="../lib/require.min.js"></script>
+    <script src="../lib/require.min.js"></script>
+    <script src="main.js"></script>
 	</body>
 </html>
