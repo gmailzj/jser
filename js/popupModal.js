@@ -1,4 +1,4 @@
-define(function() {
+(function() {
 
 
     //计算坐标
@@ -185,7 +185,7 @@ define(function() {
 
     }
     "object" == typeof module && "object" == typeof module.exports ? module.exports = Dialog : "function" == typeof define && define.amd && define("popupModal", [], function() {
-        return x
-    })
-    return Dialog;
-})
+            return Dialog
+        })
+        //return Dialog;
+})();
